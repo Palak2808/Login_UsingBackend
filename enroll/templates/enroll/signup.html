@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for fm  in form %}
+            {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+        {% endfor %}
+        {% comment %} {{form.as_p}} {% endcomment %}
+        <input type="submit" value="Submit">
+    </form>
+    {% if messages %}
+     {% for m in messages %}
+      <small>{% if m.tags %} {{m.tags}}{% endif %} {{m}} </small>
+     {% endfor %}
+    {% endif %}
+    <a href="{% url 'log' %}">Login</a>
+</body>
+</html>
